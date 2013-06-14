@@ -3,6 +3,19 @@ Led blinking demo for STM32 model STM32F103ZET6
 
 based on https://github.com/fourier/opencm3led which uses opencm3 library(https://github.com/libopencm3/libopencm3)
 
+My operating system: ubuntu
+software: gcc-arm-none-eabi openocd and opencm3(which depends on pythons
+if rebuilt)
+
+install step for gcc-arm-none-eabi(from https://launchpad.net/~terry.guo/+archive/gcc-arm-embedded)
+1. sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded
+2. sudo apt-get update
+3. sudo apt-get install gcc-arm-none-eabi
+
+installation for opencm3 need to refer to https://github.com/libopencm3/libopencm3
+
+installation for openocd: sudo apt-get install openocd
+
 make step:
 1.make
 2.openocd -f /usr/share/openocd/scripts/interface/jlink.cfg -f /usr/share/openocd/scripts/board/stm3210e_eval.cfg
