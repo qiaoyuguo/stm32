@@ -18,8 +18,9 @@ installation for openocd: sudo apt-get install openocd
 
 make step:
 1.make
-2.openocd -f /usr/share/openocd/scripts/interface/jlink.cfg -f /usr/share/openocd/scripts/board/stm3210e_eval.cfg
-3.start new terminal, and In this new terminal:
+2.cd /usr/share/openocd/scripts/
+3.openocd -f interface/jlink.cfg -f board/stm3210e_eval.cfg
+4.start new terminal, and In this new terminal:
   (1) telnet localhost 4444
   (2) halt
   (3) flash write_image erase /home/host/prac/mygithub/stm32-prac/opencm3led/main.elf
