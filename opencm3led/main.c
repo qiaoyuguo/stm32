@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#include <libopencm3/cm3/common.h>
+#include <libopencm3/stm32/common/rcc_common_all.h>
+#include <libopencm3/stm32/f1/memorymap.h>
 #include <libopencm3/stm32/f1/rcc.h>
 #include <libopencm3/stm32/f1/gpio.h>
 
@@ -29,8 +31,8 @@ static void gpio_setup(void)
 	//rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPCEN);
     
     // My board has two leds, which is at PB5 and PE5
-	rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPBEN);
-	rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPEEN);
+	rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPFEN);
+	rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPFEN);
 
 	/* Set GPIO12 (in GPIO port C) to 'output push-pull'. */
 	/* Manually: */
@@ -38,8 +40,8 @@ static void gpio_setup(void)
 	// GPIOC_CRH |= (GPIO_MODE_OUTPUT_2_MHZ << ((12 - 8) * 4));
 	/* Using API functions: */
 	//gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO7);
-	gpio_set_mode(GPIOE, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO5);
-	gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO5);
+	gpio_set_mode(GPIOF, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO6);
+	gpio_set_mode(GPIOF, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO7);
 }
 
 int main(void)
@@ -68,8 +70,8 @@ int main(void)
 
 		/* Using API function gpio_toggle(): */
 		//gpio_toggle(GPIOC, GPIO7);	/* LED on/off */
-		gpio_toggle(GPIOE, GPIO5);	/* LED on/off */
-		gpio_toggle(GPIOB, GPIO5);	/* LED on/off */
+		gpio_toggle(GPIOF, GPIO6);	/* LED on/off */
+		gpio_toggle(GPIOF, GPIO7);	/* LED on/off */
 		for (i = 0; i < 800000; i++)	/* Wait a bit. */
 			__asm__("nop");
 	}
