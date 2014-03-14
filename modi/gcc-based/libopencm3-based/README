@@ -1,0 +1,12 @@
+Hardware:
+    stm32 modi board and jlink v8
+desktop:
+    archlinux installed in virutalbox on a winxp host
+software:
+    pacman -S openocd arm-none-eabi-gcc arm-none-eabi-binutils arm-none-eabi-gdb minicom git
+    libopencm3(please refer to www.github.com/libopencm3)
+
+code(uses libopencm3 library) port to my modi stm32 board bought from taobao
+in each sub directory, run 'make all' to build the target elf file,
+run 'make V=1 flash' to flash the elf file to target board through jlink.
+
